@@ -1,7 +1,8 @@
-Feature: Opening board configurator
+Feature: Board configurator
 
   Scenario: Open Board Configurator app
-    Given nRF Connect for Desktop is opened
+    When nRF Connect for Desktop is opened
 	When Board Configurator Open button is clicked
-    Then the Board Configurator is opened
-
+    Then The Board Configurator is opened
+	Then Close the Board Configurator
+	Then Close nRF Connect for Desktop

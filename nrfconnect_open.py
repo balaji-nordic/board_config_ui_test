@@ -3,36 +3,49 @@ import pyautogui
 import unittest
 import subprocess
 import time
+import pygetwindow
+
 
 class mytest(unittest.TestCase):
 
-	def openBoardConfigurator(self):
-		x, y, _, _ = pyautogui.locateOnWindow('board_controller_app.png', 'nRF Connect for Desktop v4.3.0', confidence=0.9)
-		pyautogui.click(x+1300, y+100)
-		time.sleep(3)
+    def openBoardConfigurator(self):
+        x, y, _, _ = pyautogui.locateOnWindow(
+            'board_controller_app.png', 'nRF Connect for Desktop v4.3.0', confidence=0.9)
+        pyautogui.click(x+1300, y+100)
+        time.sleep(3)
 
-	def setUp(self):
-		self.process = subprocess.Popen('C:\\Users\\basr\\AppData\\Local\\Programs\\nrfconnect\\nRF Connect for Desktop.exe')
-		time.sleep(5)
+    def closeActiveBoardConfigurator(self):
+        self.assertEqual(pygetwindow.getActiveWindowTitle(), "Board Configurator v0.1.2",
+                         "Active window is not board configurator")
+        pyautogui.hotkey('alt', 'f4')
 
-	def checkBoardConfiguratorIsOpen(self) -> bool:
-		try:
-			x, y, _, _ = pyautogui.locateOnScreen('select_device.png', confidence=0.9)
-			pyautogui.click(x,y)
-			return True
+    def opennRFConnectForDesktop(self):
+        self.process = subprocess.Popen(
+            'C:\\Users\\basr\\AppData\\Local\\Programs\\nrfconnect\\nRF Connect for Desktop.exe')
+        time.sleep(5)
 
-		except pyautogui.ImageNotFoundException:
-			return False
+    def closenRFConnectForDesktop(self):
+        self.process.kill()
 
+    def setUp(self):
+        self.opennRFConnectForDesktop()
 
-	def tearDown(self):
-		self.process.kill()
+    def checkBoardConfiguratorIsOpen(self) -> bool:
+        try:
+            x, y, _, _ = pyautogui.locateOnScreen('select_device.png', confidence=0.9)
+            pyautogui.click(x, y)
+            return True
 
-	def test(self):
-		self.openBoardConfigurator()
-		self.assertTrue(self.checkBoardConfiguratorIsOpen(), "Board config UI is not detected")
+        except pyautogui.ImageNotFoundException:
+            return False
 
+    def tearDown(self):
+        self.closeActiveBoardConfigurator()
+        self.closenRFConnectForDesktop()
 
+    def test(self):
+        self.openBoardConfigurator()
+        self.assertTrue(self.checkBoardConfiguratorIsOpen(), "Board config UI is not detected")
 
 
 if __name__ == '__main__':
