@@ -54,7 +54,7 @@ class mytest(unittest.TestCase):
         image = f'{voltage}v.png'
         x, y, _, _ = pyautogui.locateOnScreen(image, confidence=0.8)
         pyautogui.click(x,y)
-        time.sleep(1)
+        time.sleep(2)
 
     def setUp(self):
         self.opennRFConnectForDesktop()
