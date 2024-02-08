@@ -9,9 +9,10 @@ import pygetwindow
 class mytest(unittest.TestCase):
 
     def openBoardConfigurator(self):
-        x, y, _, _ = pyautogui.locateOnWindow(
+        x, y, w, h = pyautogui.locateOnWindow(
             'board_controller_app.png', 'nRF Connect for Desktop v4.3.0', confidence=0.9)
-        pyautogui.click(x+1300, y+100)
+        x, y, _, _ = pyautogui.locateOnScreen('open.png', region=(x, y, w, h), confidence=0.9)
+        pyautogui.click(x, y)
         time.sleep(3)
 
     def closeActiveBoardConfigurator(self):
