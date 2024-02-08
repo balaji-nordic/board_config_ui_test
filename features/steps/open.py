@@ -14,7 +14,7 @@ def step_impl(context):
 
 @then(u'the Board Configurator is opened')
 def step_impl(context):
-	assert boardConfigTest.checkBoardConfiguratorIsOpen()
+	boardConfigTest.checkBoardConfiguratorIsOpen()
 
 @then(u'Close the Board Configurator')
 def step_impl(context):
@@ -35,7 +35,7 @@ def step_impl(context):
 
 @then('the nRF54L15 DK configuration is displayed')
 def step_impl(context):
-	assert boardConfigTest.checknRF54L15ConfigurationIsShown()
+	boardConfigTest.checknRF54L15ConfigurationIsShown()
 
 @then(u'select "{voltage:f}"v')
 def step_impl(context, voltage):

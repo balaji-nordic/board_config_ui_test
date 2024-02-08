@@ -4,14 +4,31 @@ import unittest
 import subprocess
 import time
 import pygetwindow
-
+from PIL import Image
 
 class mytest(unittest.TestCase):
 
+    def resize(self, filename:str):
+        img = Image.open(filename)
+        resized_board_controller_img = img.resize((int(img.size[0]*self.scaling[0]), int(img.size[1]*self.scaling[1])), resample=Image.Resampling.LANCZOS)
+        resized_board_controller_img.save(f'resized_{filename}')
+
+    def __init__(self, methodName: str = "runTest") -> None:
+        self.confidence = 0.9
+
+        current_size = pyautogui.size()
+        orig_size = (1920, 1080) # Size of the screen in which original images were taken.
+        self.scaling = (current_size[0]/orig_size[0], current_size[1]/orig_size[1])
+        self.resize('open.png')
+        self.resize('board_controller_app.png')
+        self.resize('select_device.png')
+        #TODO : Resize the rest of the image
+        super().__init__(methodName)
+
     def openBoardConfigurator(self):
         x, y, w, h = pyautogui.locateOnWindow(
-            'board_controller_app.png', 'nRF Connect for Desktop v4.3.0', confidence=0.9)
-        x, y, _, _ = pyautogui.locateOnScreen('open.png', region=(x, y, w, h), confidence=0.9)
+            'resized_board_controller_app.png', 'nRF Connect for Desktop v4.3.0', confidence=self.confidence)
+        x, y, _, _ = pyautogui.locateOnScreen('resized_open.png', region=(x, y, w, h), confidence=self.confidence)
         pyautogui.click(x, y)
         time.sleep(3)
 
@@ -26,25 +43,20 @@ class mytest(unittest.TestCase):
         time.sleep(5)
 
     def selectnrf54l15DK(self):
-        x, y, _, _ = pyautogui.locateOnScreen('nrf54l15.png', confidence=0.9)
+        x, y, _, _ = pyautogui.locateOnScreen('nrf54l15.png', confidence=self.confidence)
         pyautogui.click(x, y)
 
     def closenRFConnectForDesktop(self):
         self.process.kill()
 
     def checkBoardConfiguratorIsOpen(self) -> bool:
-        try:
-            x, y, _, _ = pyautogui.locateOnScreen('select_device.png', confidence=0.9)
-            pyautogui.click(x, y)
-            time.sleep(3)
-            return True
-
-        except pyautogui.ImageNotFoundException:
-            return False
+        x, y, _, _ = pyautogui.locateOnScreen('resized_select_device.png', confidence=self.confidence)
+        pyautogui.click(x, y)
+        time.sleep(3)
 
     def checknRF54L15ConfigurationIsShown(self) -> bool:
         try:
-            x, y, _, _ = pyautogui.locateOnScreen('nRF54L15PDK.png', confidence=0.9)
+            x, y, _, _ = pyautogui.locateOnScreen('nRF54L15PDK.png', confidence=self.confidence)
             return True
 
         except pyautogui.ImageNotFoundException:
