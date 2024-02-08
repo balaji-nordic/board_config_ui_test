@@ -1,5 +1,6 @@
 from behave import *
 from nrfconnect_open import mytest
+import time
 
 boardConfigTest = mytest()
 
@@ -39,3 +40,7 @@ def step_impl(context):
 @then(u'select "{voltage:f}"v')
 def step_impl(context, voltage):
 	boardConfigTest.selectVoltage(voltage)
+
+@then(u'Wait "{seconds:d}" seconds')
+def step_impl(context, seconds):
+	time.sleep(seconds)

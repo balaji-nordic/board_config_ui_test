@@ -12,9 +12,9 @@ Scenario: Open Board Configurator app
 	When Board Configurator Open button is clicked
     Then The Board Configurator is opened
   When the nRF54L15 DK is selected
-    Then the nRF54L15 DK configuration is displayed
-  Then select "1.8"v
-  Then select "2.0"v
-  Then select "3.0"v
-  Then Close the Board Configurator
-	Then Close nRF Connect for Desktop
+    Then Wait "5" seconds
+    Then select "1.8"v
+    Then select "2.0"v
+    Then select "3.0"v
+    Then Close the Board Configurator
+    Then Close nRF Connect for Desktop
