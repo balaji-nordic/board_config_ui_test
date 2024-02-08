@@ -16,11 +16,11 @@ def step_impl(context):
 	assert boardConfigTest.checkBoardConfiguratorIsOpen()
 
 @then(u'Close the Board Configurator')
-def step_imple(context):
+def step_impl(context):
 	boardConfigTest.closeActiveBoardConfigurator()
 
 @then(u'Close nRF Connect for Desktop')
-def step_imple(context):
+def step_impl(context):
 	boardConfigTest.closenRFConnectForDesktop()
 
 @given('the Board Configurator is opened')
