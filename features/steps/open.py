@@ -27,3 +27,12 @@ def step_impl(context):
 def step_impl(context):
 	boardConfigTest.opennRFConnectForDesktop()
 	boardConfigTest.openBoardConfigurator()
+
+@when('the nRF54L15 DK is selected')
+def step_impl(context):
+	boardConfigTest.selectnrf54l15DK()
+
+@then('the nRF54L15 DK configuration is displayed')
+def step_impl(context):
+	assert boardConfigTest.checknRF54L15ConfigurationIsShown()
+

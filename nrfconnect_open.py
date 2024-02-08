@@ -25,20 +25,33 @@ class mytest(unittest.TestCase):
             'C:\\Users\\basr\\AppData\\Local\\Programs\\nrfconnect\\nRF Connect for Desktop.exe')
         time.sleep(5)
 
+    def selectnrf54l15DK(self):
+        x, y, _, _ = pyautogui.locateOnScreen('nrf54l15.png', confidence=0.9)
+        pyautogui.click(x, y)
+
     def closenRFConnectForDesktop(self):
         self.process.kill()
-
-    def setUp(self):
-        self.opennRFConnectForDesktop()
 
     def checkBoardConfiguratorIsOpen(self) -> bool:
         try:
             x, y, _, _ = pyautogui.locateOnScreen('select_device.png', confidence=0.9)
             pyautogui.click(x, y)
+            time.sleep(3)
             return True
 
         except pyautogui.ImageNotFoundException:
             return False
+
+    def checknRF54L15ConfigurationIsShown(self) -> bool:
+        try:
+            x, y, _, _ = pyautogui.locateOnScreen('nRF54L15PDK.png', confidence=0.9)
+            return True
+
+        except pyautogui.ImageNotFoundException:
+            return False
+
+    def setUp(self):
+        self.opennRFConnectForDesktop()
 
     def tearDown(self):
         self.closeActiveBoardConfigurator()
