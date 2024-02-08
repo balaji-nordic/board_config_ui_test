@@ -16,7 +16,7 @@ class mytest(unittest.TestCase):
         time.sleep(3)
 
     def closeActiveBoardConfigurator(self):
-        self.assertEqual(pygetwindow.getActiveWindowTitle(), "Board Configurator v0.1.2",
+        self.assertEqual(pygetwindow.getActiveWindowTitle(), "Board Configurator v0.1.4",
                          "Active window is not board configurator")
         pyautogui.hotkey('alt', 'f4')
 
