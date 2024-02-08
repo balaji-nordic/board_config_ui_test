@@ -36,3 +36,6 @@ def step_impl(context):
 def step_impl(context):
 	assert boardConfigTest.checknRF54L15ConfigurationIsShown()
 
+@then(u'select "{voltage:f}"v')
+def step_impl(context, voltage):
+	boardConfigTest.selectVoltage(voltage)

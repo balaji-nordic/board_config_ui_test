@@ -50,6 +50,12 @@ class mytest(unittest.TestCase):
         except pyautogui.ImageNotFoundException:
             return False
 
+    def selectVoltage(self, voltage : float):
+        image = f'{voltage}v.png'
+        x, y, _, _ = pyautogui.locateOnScreen(image, confidence=0.8)
+        pyautogui.click(x,y)
+        time.sleep(1)
+
     def setUp(self):
         self.opennRFConnectForDesktop()
 
