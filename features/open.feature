@@ -15,6 +15,5 @@ Scenario: Open Board Configurator app
     Then Wait "5" seconds
     Then select "1.8"v
     Then select "2.0"v
-    Then select "3.0"v
     Then Close the Board Configurator
     Then Close nRF Connect for Desktop
