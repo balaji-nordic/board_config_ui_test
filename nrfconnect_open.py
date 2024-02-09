@@ -10,8 +10,9 @@ class mytest(unittest.TestCase):
 
     def openBoardConfigurator(self):
         x, y, w, h = pyautogui.locateOnWindow(
-            'board_controller_app.png', 'nRF Connect for Desktop v4.3.0', confidence=0.9)
-        x, y, _, _ = pyautogui.locateOnScreen('open.png', region=(x, y, w, h), confidence=0.9)
+            'images/board_controller_app.png', 'nRF Connect for Desktop v4.3.0', confidence=0.9)
+        x, y, _, _ = pyautogui.locateOnScreen(
+            'images/open.png', region=(x, y, w, h), confidence=0.9)
         pyautogui.click(x, y)
         time.sleep(3)
 
@@ -26,7 +27,7 @@ class mytest(unittest.TestCase):
         time.sleep(5)
 
     def selectnrf54l15DK(self):
-        x, y, _, _ = pyautogui.locateOnScreen('nrf54l15.png', confidence=0.9)
+        x, y, _, _ = pyautogui.locateOnScreen('images/nrf54l15.png', confidence=0.9)
         pyautogui.click(x, y)
 
     def closenRFConnectForDesktop(self):
@@ -34,7 +35,7 @@ class mytest(unittest.TestCase):
 
     def checkBoardConfiguratorIsOpen(self) -> bool:
         try:
-            x, y, _, _ = pyautogui.locateOnScreen('select_device.png', confidence=0.9)
+            x, y, _, _ = pyautogui.locateOnScreen('images/select_device.png', confidence=0.9)
             pyautogui.click(x, y)
             time.sleep(3)
             return True
@@ -44,16 +45,16 @@ class mytest(unittest.TestCase):
 
     def checknRF54L15ConfigurationIsShown(self) -> bool:
         try:
-            x, y, _, _ = pyautogui.locateOnScreen('nRF54L15PDK.png', confidence=0.9)
+            x, y, _, _ = pyautogui.locateOnScreen('images/nRF54L15PDK.png', confidence=0.9)
             return True
 
         except pyautogui.ImageNotFoundException:
             return False
 
-    def selectVoltage(self, voltage : float):
-        image = f'{voltage}v.png'
+    def selectVoltage(self, voltage: float):
+        image = f'images/{voltage}v.png'
         x, y, _, _ = pyautogui.locateOnScreen(image, confidence=0.8)
-        pyautogui.click(x,y)
+        pyautogui.click(x, y)
         time.sleep(2)
 
     def setUp(self):
