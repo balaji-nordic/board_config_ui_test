@@ -10,7 +10,7 @@ class mytest(unittest.TestCase):
 
     def openBoardConfigurator(self):
         x, y, w, h = pyautogui.locateOnWindow(
-            'images/board_controller_app.png', 'nRF Connect for Desktop v4.3.0', confidence=0.9)
+            'images/board_controller_app.png', 'nRF Connect for Desktop v4.4.0', confidence=0.9)
         x, y, _, _ = pyautogui.locateOnScreen(
             'images/open.png', region=(x, y, w, h), confidence=0.9)
         pyautogui.click(x, y)
