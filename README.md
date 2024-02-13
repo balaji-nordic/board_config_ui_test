@@ -26,14 +26,12 @@ This repository contains automated tests for the Board Configurator GUI using Py
    ```
 
 ## Test Scenarios
-
-See https://github.com/balaji-nordic/board_config_ui_test/blob/8c6135344c368cf8de9f08c6063b410bfdbe0755/features/open.feature#L3-L19
+ https://github.com/balaji-nordic/board_config_ui_test/blob/8c6135344c368cf8de9f08c6063b410bfdbe0755/features/open.feature#L3-L19
 
 ## Limitations
 
 - Tested only on Windows
-- The tests are currently designed to work correctly on a PC with the monitor having the same resolution as where the snapshots were taken. This is the limitation of `pyautogui` framework.
--- Work in progress: Efforts are being made to use the scaling functionality of `pillows`  to ensure that the tests adapt to different screen resolutions. See [resizing branch](https://github.com/balaji-nordic/board_config_ui_test/tree/resizing_to_work_on_all_monitors) for more details.
+- The tests are currently designed to work correctly on a PC with the monitor having the same resolution as where the snapshots were taken. This is the limitation of `pyautogui` framework. Efforts are being made to use the scaling functionality of `pillows` to ensure that the tests adapt to different screen resolutions. See [resizing branch](https://github.com/balaji-nordic/board_config_ui_test/tree/resizing_to_work_on_all_monitors) for more details.
 
 ## Usage
 
